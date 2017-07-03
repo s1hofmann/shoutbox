@@ -8,14 +8,6 @@
     <h3 style="margin-left: 30px"><b>What grinds your gears?</b></h3>
     </div>
     <div class="container" style="margin-top: 40px;">
-        <form method="POST" action="/shout" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            {{ wtf.form_errors(form, hiddens="only") }}
-            <div class="row" style="padding: 10px;">
-                {{ wtf.form_field(form.name) }}
-                {{ wtf.form_field(form.shout) }}
-                {{ wtf.form_field(form.submit) }}
-            </div>
-        </form>
+        {{ wtf.quick_form(form) }}
     </div>
 {% endblock %}
