@@ -3,7 +3,7 @@
 {% block main_body %}
 <div class="center-box">
     <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
-        {% for element in elements %}
+        {% for element in elements | reverse %}
             {% include "entry.html" %}
         {% endfor %}
     </div>

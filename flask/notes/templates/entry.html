@@ -1,10 +1,10 @@
 <div class="grid-item col-xs-12 col-sm-6 col-lg-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a href="/"><b>Author</b></a>
+            <a href="/user/{{ element.username }}"><b>{{ element.username }}</b></a>
         </div>
         <div class="panel-body">
-            <h1>das ist ein test mit genau 140 zeichen die ich hoffentlich bald voll habe, weil mir sonst nichts mehr einfallen wird.aasdfdasfasdfasdfffddss</h1>
+            <h1>{{ element.text | upper }}</h1>
         </div>
     </div>
 </div>

@@ -1,17 +1,23 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 from .forms import ShoutForm
 
 __all__ = ["app"]
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "Don't tell anyone!"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///shoutbox.db"
+db = SQLAlchemy(app)
 Bootstrap(app)
+
+from . import models
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", elements=range(12))
+    shouts = models.Shout.query.all()
+    return render_template("index.html", elements=shouts)
 
 @app.route("/hello/<string:username>")
 def say_hi(username):
@@ -25,8 +31,11 @@ def user(username):
 def shout():
     sf = ShoutForm()
     if sf.validate_on_submit():
-        name = sf.name
-        text = sf.shout
+        name = sf.name.data
+        text = sf.shout.data
+        new_shout = models.Shout(name=name, text=text)
+        db.session.add(new_shout)
+        db.session.commit()
         return redirect(url_for("index"))
     return render_template("shout.html", form=sf)
 
