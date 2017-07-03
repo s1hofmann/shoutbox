@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ConSol* DevOps Day 2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<section class="slide white">
+		<h2 class="shout">Python Web Development</h2>
+	</section>
+	<section class="slide">
+		<h2>Outline</h2>
+		<ul>
+			<li>-1. Who am I and what am I doing here?</li>
+		</ul>
+	</section>
+	<section class="slide">
+		<h2>Outline</h2>
+		<ul>
+			<li>0. Intro</li>
+		</ul>
+	</section>
+	<section class="slide">
+		<h2>Outline</h2>
+		<ul>
+			<li>1. Python</li>
+			<ul>
+				<li>Installation</li>
+				<li>(Very) short syntax overview</li>
+				<li>Package management</li>
+				<li>Virtual environments</li>
+				<li>Packages and modules</li>
+			</ul>
+		</ul>
+	</section>
+	<section class="slide">
+		<h2>Outline</h2>
+		<ul>
+			<li>2. Flask</li>
+			<ul>
+				<li>Setup</li>
+				<li>Routing</li>
+				<li>Extensions</li>
+				<li>Templates</li>
+				<li>Persistence</li>
+			</ul>
+		</ul>
+	</section>
+	<section class="slide">
+		<h2>Outline</h2>
+		<ul>
+			<li>3. Uberspace</li>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">-1. Who am I and what am I doing here?</h2>
+	</section>
+	<section class="slide">
+		<h2>I'm Simon</h2>
+		<ul>
+			<li>Began using Python by writing small scripts on my Linux systems</li>
+			<li>Used it even more while working in the field of computer vision at the university</li>
+			<li>One day I needed a REST backend and naturally began writing it in Python</li>
+			<li>And now I'm here to tell you about it!</li>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">0. Intro</h2>
+	</section>
+	<section class="slide">
+		<h2>Python Web Development</h2>
+		<ul>
+			<li>Python mostly used for server side programming</li>
+			<li>Not necessarily, but usually done using web frameworks</li>
+			<li>Allow you to focus on application logic and not worry about low-level details</li>
+			<li class="next">And since you can convert *anything* to JavaScript: Transpilers available to generate JS from Python for client side programming</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Web Frameworks</h2>
+		<ul>
+			<li>Full Stack: Has everything you (may not even) need</li>
+			<ul>
+				<li>Application server, persistence API, template engine, authentication module, AJAX support, etc.</li>
+				<li>Examples: Django, TurboGears, web2py</li>
+			</ul>
+			<li>Micro: Provides a basic setup to get started</li>
+			<ul>
+				<li>Application server, (template engine)</li>
+				<li>Additional requirements are (eventually) brought in via plug-ins</li>
+				<li>Examples: Flask, Bottle, Pyramid</li>
+			</ul>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">1. Python</h2>
+	</section>
+	<section class="slide">
+		<h2>Python</h2>
+		<ul>
+			<li>Object oriented</li>
+			<li>Strong dynamic typing</li>
+			<li>Memory management</li>
+			<li>Module and package system</li>
+			<li>Feature rich standard library</li>
+			<li>Provides a REPL</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python</h2>
+		<ul>
+			<li>No brackets, semicolons, etc.</li>
+			<li>Code is structured using indentation</li>
+			<li>Standard container classes: Lists, Tuples, Dictionaries (Maps), Sets</li>
+			<li>Iterators</li>
+			<li>List comprehensions</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Styleguide</h2>
+		<ul>
+			<li>Indent with 4 spaces</li>
+			<li>Class names should be CapWordFormatted</li>
+			<li>Function names should be lowercase, words separated by underscores</li>
+			<li>Same holds for variable names</li>
+			<li>Complete styleguide: <a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Installation</h2>
+		<ul>
+			<li>Linux and macOS should come with a pre-installed Python distribution. Since these distributions are rather old, we can install a newer one</li>
+			<li>Linux: Ask you local package manager (e.g. sudo apt-get install python3 or sudo pacman -S python)</li>
+			<li>macOS: Get it from the brewery (brew install python3)</li>
+			<li>Python provides a setup for Windows systems</li>
+			<li>Make sure to check the option to add Python to your path at the bottom of the first setup screen and it should be availabe from the command line right away</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python Examples - Hello world</h2>
+		<pre>
+			<code># hello_1.py
+print("Hello world!")</code>
+		</pre>
+		<pre>
+			<code>$ python hello_1.py</code>
+		</pre>
+	</section>
+	<section class="slide">
+		<h2>Python Examples - Comments</h2>
+		<pre>
+			<code># I'm a single line comment</code>
+			<code># We arrrr</code>
+			<code># pirates! (And a multi line comment!)</code>
+			<code>'''</code>
+			<code>So arrrr we!</code>
+			<code>'''</code>
+		</pre>
+	</section>
+	<section class="slide">
+		<h2>Python Examples - Iterating</h2>
+		<pre>
+			<code>list_example = [1, 2, 3, 4, 5, 6]</code>
+			<code>for element in list_example:</code>
+			<code>	print(element)</code>
+			<code>for element in reversed(list_example):</code>
+			<code>	print(element)</code>
+		</pre>
+	</section>
+	<section class="slide">
+		<h2>Python Examples - Classes</h2>
+		<pre>
+			<code>class A:</code>
+			<code>	def __init__(self): # Constructor</code>
+			<code>		self.variable = 42</code>
+			<code>		self._protected_variable = 23</code>
+			<code>		self.__private_variable = 5</code>
+			<code>	def say_hi(self):</code>
+			<code>		print("Hi Consolis!")</code>
+		</pre>
+	</section>
+	<section class="slide">
+		<h2>Python Examples - Exception handling</h2>
+		<pre>
+			<code>try:</code>
+			<code>	some_method()</code>
+			<code>except some_exception as e:</code>
+			<code>	print(e)</code>
+			<code>	# raise</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Package management</h2>
+		<ul>
+			<li><i>pip</i> - <b>P</b>ip <b>I</b>nstalls <b>P</b>ython</li>
+			<li>Common package management tool</li>
+			<li>Packages are listed in the <a href="https://pypi.python.org/pypi">Python Package Index</a></li>
+			<li>As of today, 111187 third-party packages are available</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Package management</h2>
+		<pre>
+			<code>pip install ${package}</code>
+			<code>pip uninstall ${package}</code>
+			<code>pip list</code>
+		</pre>
+		<pre>
+			<code>pip freeze > requirements.txt</code>
+			<code>pip install -r requirements.txt</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Virtual environments</h2>
+		<ul>
+			<li>Packages are installed in a per-user or system wide repository</li>
+			<li>Many different versions clutter the system</li>
+			<li>Virtual environments avoid this by creating local copies of a Python environment</li>
+		</ul>
+		<pre>
+			<code>pip install virtualenv</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Activating virtual environment</h2>
+		<pre>
+			<code>virtualenv venv</code>
+			<code>source venv/bin/activate</code>
+			<code>(venv)${PS1}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Modules</h2>
+		<blockquote>
+			<p>What's a module in Python?</p>
+		</blockquote>
+		<ul>
+			<li>Every single source file in Python represents a module</li>
+			<li>It's possible to keep all your code in a single module</li>
+			<li>It's better to separate it into modules</li>
+			<li>Modules can be imported</li>
+			<li>Once a module gets imported, all of it's statements are executed until EOF</li>
+			<li>What's left on global scope after this initial execution is the modules content</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Module example</h2>
+		<pre>
+			<code># consol.py</code>
+			<code>def say_hi():</code>
+			<code>	print("Hi ConSolis!")</code>
+		</pre>
+		<pre>
+			<code># main.py</code>
+			<code>import .consol</code>
+			<code>consol.say_hi()</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Python - Packages</h2>
+		<blockquote>
+			<p>And what's a package?</p>
+		</blockquote>
+		<ul>
+			<li>A package is a collection of modules within a folder</li>
+			<li>This folder needs an '<i>__init__.py</i>' file</li>
+			<li><small>(Kind of like a package constructor)</small></li>
+			<li>Imports can be relative (recommended for flexibility)</li>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">2. Flask</h2>
+	</section>
+	<section class="slide">
+		<h2>Flask</h2>
+		<blockquote>
+			<p>Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions</p>
+		</blockquote>
+	</section>
+
+	<section class="slide">
+		<h2>Flask</h2>
+		<ul>
+			<li><b>Werkzeug:</b></li>
+			<ul>
+				<li>Werkzeug is a WSGI utility library for Python under BSD license</li>
+			</ul>
+			<li><b>Jinja 2:</b></li>
+			<ul>
+				<li>Jinja 2 is a full featured template engine for Python with built-in unicode support</li>
+			</ul>
+			<li><b>Good intentions:</b></li>
+			<ul>
+				<li><a href="https://twitter.com/mitsuhiko">Armin Ronacher</a> is a great open source contributor and wrote all of the above and more</li>
+			</ul>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Project structure</h2>
+		<pre>
+			<code>- flask/  <- Project folder</code>
+			<code>|- notes/  <- Application subfolder</code>
+			<code> |- __init__.py  <- notes package</code>
+			<code>|- venv/  <- Virtual environment</code>
+			<code>|- run.py  <- Script to run application</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Setup</h2>
+		<ul>
+			<li>Clone the repository</li>
+		</ul>
+		<pre>
+			<code>git clone https://github.com/s1hofmann/shoutbox.git</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Setup</h2>
+		<ul>
+			<li>Inside the subfolder 'flask', create a new virtual environment called venv</li>
+		</ul>
+		<pre>
+			<code>virtualenv venv</code>
+		</pre>
+		<ul>
+			<li>Activate it</li>
+		</ul>
+		<pre>
+			<code>source venv/bin/activate or venv\Scripts\activate</code>
+		</pre>
+		<ul>
+			<li>Install Flask</li>
+		</ul>
+		<pre>
+			<code>pip install flask</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Setup</h2>
+		<ul>
+			<li>The basic project structure is now set up</li>
+			<li>The <i>run.py</i> script is used to run the server (later used for FastCGI)</li>
+			<li>Everything related to the actual web application goes inside <i>notes/</i></li>
+			<li>Packages and interpreter are located in <i>venv/</i></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Hello world</h2>
+		<ul>
+			<li>Create a file <i>note_app.py</i> inside the <i>notes</i> folder</li>
+		</ul>
+		<pre>
+			<code># notes/note_app.py
+from flask import Flask
+__all__ = ['app'] # Added for imports
+app = Flask(__name__)
+@app.route('/')
+def index():
+	return "Hello ConSolis!"</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Hello world</h2>
+		<ul>
+			<li>Next, import all symbols from <i>notes.py</i> to the package</li>
+		</ul>
+		<pre>
+			<code># notes/__init__.py
+from .notes_app import *</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Hello world</h2>
+		<ul>
+			<li>Finally, make the notes application available in <i>run.py</i></li>
+		</ul>
+		<pre>
+			<code># run.py
+#!venv/bin/python
+import notes
+if __name__ == "__main__":
+	notes.app.run()</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Hello world</h2>
+		<ul>
+			<li>Now if we start our application</li>
+		</ul>
+		<pre>
+			<code>venv/bin/python run.py</code>
+		</pre>
+		<ul>
+			<li>We should see our server listen on port 5000:</li>
+		</ul>
+		<pre>
+			<code>* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Request routing</h2>
+		<ul>
+			<li>Routing in Flask is configured using decorators</li>
+			<li>Two things are required: A route decorator and its corresponding view function</li>
+		</ul>
+		<pre>
+			<code>@app.route('/')  # Route decorator
+def index():  # View function
+	return "Hello ConSolis!"</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Request routing</h2>
+		<ul>
+			<li>Routing supports path variables</li>
+			<li>Path variables are specified in angle brackets with an optional type</li>
+			<li>The view function receives an argument named after the path variable</li>
+		</ul>
+		<pre>
+			<code>@app.route('/hello/&lsaquo;string:username&rsaquo;')  # Route decorator
+def say_hi(username):  # View function
+	pass</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Routing exercise</h2>
+		<ul>
+			<li>Complete the '/hello/' route to return a customized string</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Request hooks</h2>
+		<ul>
+			<li>Request hooks can carry out actions before or after requests are routed</li>
+			<li>(Similar to servlet filters)</li>
+			<li>Flask provides four different hooks</li>
+		</ul>
+		<table>
+			<tr>
+				<th scope="col">Hook</th>
+				<th scope="col">Description</th>
+			</tr>
+			<tr>
+				<td>@before_first_request</th>
+				<td>Runs before the very first request</th>
+			</tr>
+			<tr>
+				<td>@before_request</th>
+				<td>Runs before every request</th>
+			</tr>
+			<tr>
+				<td>@after_request</th>
+				<td>Runs after every successful request</th>
+			</tr>
+			<tr>
+				<td>@teardown_request</th>
+				<td>Runs after <i>every</i> request</th>
+			</tr>
+		</table>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Responses</h2>
+		<ul>
+			<li>Flasks automatically wraps return values into valid HTTP responses</li>
+			<li>Return value, status code and headers can be represented as tuple</li>
+			<li>If no status code is provided, 200 Ok is returned</li>
+		</ul>
+		<pre>
+			<code>@app.index('/')</code>
+			<code>def index():</code>
+			<code>	return ("Hello ConSolis!", 204)
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Templates</h2>
+		<ul>
+			<li>We don't actually want to put presentation logic into our controller</li>
+			<li>Flasks comes with a template engine called <i>jinja2</i> to handle this problem</li>
+			<li>Templates are rendered by calling the <i>render_template("$template.html")</i> method</li>
+			<li>HTML with additional template functions</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template variables</h2>
+		<ul>
+			<li>render_template takes variable mappings for variables which will be substituted in the template</li>
+			<li><b>render_template("$template.html", template_var=var)</b> substitutes template_var with var</li>
+		</ul>
+		<pre>
+			<code><p>{{ template_var }}</p></code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template blocks</h2>
+		<ul>
+			<li>Template blocks are defined parts of a template which can be overidden</li>
+		</ul>
+		<pre>
+			<code>{% block $name %}</code>
+			<code>{% endblock %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template inheritance</h2>
+		<ul>
+			<li>Templates can inherit from a super template and override blocks</li>
+		</ul>
+		<pre>
+			<code>{% extends 'super_template.html' %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template inheritance</h2>
+		<ul>
+			<li>Similar to inheritance in Python, super templates have to be initialized</li>
+			<li>Each blocks requires a super call, otherwise the super templates content will be lost</li>
+		</ul>
+		<pre>
+			<code>{% block derived %}
+{{ super() }}
+{% endblock %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template includes</h2>
+		<ul>
+			<li>Template can include other templates to assemble complex elements</li>
+		</ul>
+		<pre>
+			<code>{% include 'other_template.html' %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template control structures</h2>
+		<pre>
+			<code>{% if $condition %} 
+	statement
+{% else %} 
+	other_statement 
+{% endif %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Template loops</h2>
+		<pre>
+			<code>{% for element in elements %} 
+	statement
+{% endfor %}</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Templates exercise</h2>
+		<ul>
+			<li>Create template <i>templates/hello.html</i> which renders a personal greeting to the user</li>
+			<li>Update the /hello/ route to render your template</li>
+		</ul>
+		<pre>
+			<code>@app.route('/hello/&lsaquo;string:username&rsaquo;')
+def say_hi(username):
+    return render_template(...)</code>
+	</section>
+
+	<section class="slide">
+		<h2>Shortcut!</h2>
+		<ul>
+			<li>Now that we've covered the basics on routes and templates, let's move a bit ahead</li>
+		</ul>
+		<pre>
+			<code>git checkout tags/webforms_init</code>
+			<code>pip install -r requirements.txt</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>What's next?</h2>
+		<ul>
+			<li>Let's implement a little shout box where users can enter their name and let the world know what grinds their gears!</li>
+			<li>What's missing?</li>
+			<ol>
+				<li>A form to enter data</li>
+				<li>A way to persist data</li>
+				<li>A way to render entered data</li>
+				<li>Filtering shouts per user</li>
+			</ol>
+		</ul>
+	</section>
+	
+	<section class="slide">
+		<h2>Flask - WebForms</h2>
+		<ul>
+			<li>Flask-WTF provides enhanced features to handle web forms</li>
+			<li>It supports you in generating HTML code for web forms</li>
+			<li>Provides CSRF protection out of the box</li>
+		</ul>
+		<pre>
+			<code>pip install flask-wtf</code>
+		</<pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - WebForms</h2>
+		<ul>
+			<li>Forms hold objects derived from Form class</li>
+			<li>Standard HTML fields supported: StringField, DateField, IntegerField, SelectField, <a href="http://wtforms.simplecodes.com/docs/0.6.1/fields.html">etc.</a></li>
+			<li>Validators supported: Required, Optional, Length, EqualTo, <a href="http://wtforms.simplecodes.com/docs/0.6.1/validators.html">etc.</a></li>
+			<li>Form content will be available via variables</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - WebForms</h2>
+		<pre>
+			<code>from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
+class MyForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+	submit = SubmitField('submit')</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - WebForms exercise</h2>
+		<ul>
+			<li>Create a new file <i>notes/forms.py</i></li>
+			<li>Using the previous sample, build up a <i>ShoutForm</i></li>
+			<li>Provide a StringField for the name, a TextAreaField for the shout and a SubmitField to submit</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Intermission - Flask config</h2>
+		<ul>
+			<li>When trying to render the ShoutForm for the first time, a KeyError should be raised</li>
+			<li>What's missing is a secret key flask-wtf tries to use to prevent CSRF</li>
+			<li>Flask provides a global secret key, which can be set in the app config map</li>
+		</ul>
+		<pre>
+			<code># notes/note_app.py
+app.config['SECRET_KEY'] = "Don't tell anyone!"</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - WebForms</h2>
+		<ul>
+			<li>After setting the secret key we still encounter an error</li>
+			<li>Per default, Flask only allows "GET" requests</li>
+			<li>Additional methods are specified on the route decorator
+		</ul>
+		<pre>
+			<code>@app.route('/shout/', methods=["GET", "POST"])</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Persistence</h2>
+		<ul>
+			<li>Now that we got our form set up, we need a way to persist inputs</li>
+			<li>Flask provides a plugin to work with SQLAlchemy, a powerful ORM</li>
+		</ul>
+		<pre>
+			<code>git checkout tags/database_init</code>
+			<code>pip install flask-sqlalchemy</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Persistence</h2>
+		<ul>
+			<li>The repository contains an SQLite3 database with the following layout</li>
+		</ul>
+		<table>
+			<tr>
+				<th scope="col">name</th>
+				<th scope="col">type</th>
+			</tr>
+			<tr>
+				<td>id</th>
+				<td>INTEGER</th>
+			</tr>
+			<tr>
+				<td>username</th>
+				<td>TEXT</th>
+			</tr>
+			<tr>
+				<td>text</th>
+				<td>TEXT</th>
+			</tr>
+		</table>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Persistence</h2>
+		<ul>
+			<li>The Flask config requires the path to the database</li>
+			<li>This path is stored in the config under the key "SQLALCHEMY_DATABASE_URI"</li>
+			<li>Checkout the tag and configure the database path</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Persistence</h2>
+		<ul>
+			<li>The SQLAlchemy engine is initialized by passing the application object to SQLAlchemy</li>
+		</ul>
+		<pre>
+			<code># notes/note_app.py
+db = SQLAlchemy(app)</code>
+		</pre>
+		<ul>
+			<li>The newly created SQLAlchemy object contains several high level ORM objects like <i>Model</i>, <i>Column</i> or types</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Defining persistence models</h2>
+		<pre>
+			<code>class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.Text)
+    email = db.Column(db.Text)
+
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Defining persistence models</h2>
+		<ul>
+			<li>Create a new file "notes/models.py"</li>
+			<li>In this file, import the db object from note_app</li>
+			<li>Using the db object, create your Shout database model</li>
+	</section>
+
+	<section class="slide">
+		<h2>Flask - Cyclic imports</h2>
+		<ul>
+			<li>We need to make the newly defined model available in our controller</li>
+			<li>We'll have to import the models module in note_app</li>
+			<li>For this to work, the module has to be imported <b>after</b> the db object has been initialized</li>
+	</section>
+
+	<section class="slide">
+		<h2>Summary</h2>
+		<ul>
+			<li>Flask is a very flexible and extensible framework</li>
+			<li>MVC pattern with SQLAlchemy, Jinja2 and Flask</li>
+			<li>Lots of additional extensions</li>
+			<ul>
+				<li>Login</li>
+				<li>OAuth</li>
+				<li>Websockets</li>
+				<li>and more...</li>
+			</ul>
+			<li>Check the <a href="http://flask.pocoo.org/extensions/">Flask Extension Registry</a></li>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">Thank's for your attention!</h2>
+		<h3>Find me on Github: <a href="https://github.com/s1hofmann">@s1hofmann</a></h2>
+	</section>
+
+	<section class="slide">
+		<h2>Appendix A - External configuration</h2>
+		<ul>
+			<li>Keeping configuration elements inside the code is not that great</li>
+			<li>Flask provides a way to configure the application object using a config class</li>
+			<li>Config is a simple data class with members named after the config entries</li>
+		</ul>
+		<pre>
+			<code>class Config:
+    SECRET_KEY = 'hard to guess'
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///shoutbox.db'</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Appendix B - Logging</h2>
+		<ul>
+			<li>Logging is essential in web apps</li>
+			<li>The application object provides a default logger</li>
+		</ul>
+		<pre>
+			<code>app.logger.debug('A value for debugging')
+app.logger.error('An error occurred')</code>
+		</pre>
+		<ul>
+			<li>app.logger is a standard logging Logger</li>
+			<li>Allows easy modification by adding custom handlers</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Appendix C - Custom error pages</h2>
+		<ul>
+			<li>Flask per default renders standard black-and-white error pages</li>
+			<li>Decorators allow to register custoom error pages</li>
+		</ul>
+		<pre>
+			<code>@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404</code>
+		</pre>
+		<ul>
+			<li>Remember to set the correct return status in render_template</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Appendix D - Crash reporting</h2>
+		<ul>
+			<li>Uncaught exceptions are very bad</li>
+			<li>Logging helps to trace them</li>
+			<li><a href="https://sentry.io/welcome/">Sentry.io</a> provides crash reporting which integrates seamlessly with Flask</li>
+		</ul>
+		<pre>
+			<code>from raven.contrib.flask import Sentry
+sentry = Sentry()
+sentry.init_app(app, dsn=$sentry_key)</code>
+		</pre>
+		<ul>
+			<li>That's all it takes for detailed crash reporting! (And it's free for hobbyists!</li>
+		</ul>
+	</section>
+
+	<section class="slide white">
+		<h2 class="shout">That's it!</h2>
+		<h3>This time for real!</h3>
+	</section>
+	<script src="shower.min.js"></script>
+	<!-- Copyright © 2017 Simon Hofmann -->
+</body>
+</html>
