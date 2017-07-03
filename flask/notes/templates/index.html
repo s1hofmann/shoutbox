@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main_body %}
+<div class="center-box">
+    <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
+        {% for element in elements %}
+            {% include "entry.html" %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

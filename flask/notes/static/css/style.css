@@ -1,0 +1,35 @@
+.navbar {
+    background-color: black;
+    color: white;
+}
+
+.close {
+    font-size: small;
+}
+
+.grid-item {
+    margin-top: 15px;
+    width: 20%;
+}
+
+.panel {
+    border: dashed black 1px;
+    background: lightgray;
+}
+
+.infobox {
+    border: dashed lightgray 1px;
+    margin: 5px;
+}
+
+.notificationbox {
+    margin: 15px;
+    border: solid tomato 3px;
+    border-radius: 8px;
+    background-color: lightcoral;
+    padding: 10px;
+}
+
+body {
+    padding-top: 50px;
+}

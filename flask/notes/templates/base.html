@@ -1,0 +1,55 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></script>
+    <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+{% endblock %}
+
+{% block scripts %}
+    {{super()}}
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block favicon %}
+{% endblock %}
+
+{% block feed %}
+{% endblock %}
+
+{% block title %}
+    ShoutBox
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#dropdown_filters">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color: white; font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace" href="/">ShoutBox!<span class="sr-only">home</span></a>
+            </div>
+            <div class="collapse navbar-collapse" id="dropdown_filters">
+                <ul class="nav navbar-nav">
+                    <li><a href="/shout">Shout!</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {% include "flash.html" %}
+    {% block main_body %}
+    {% endblock %}
+{% endblock %}
