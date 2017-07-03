@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 __all__ = ['app']
 
@@ -11,4 +11,4 @@ def index():
 
 @app.route('/hello/<string:username>')
 def user(username):
-    return "<h1>Hello " +  username + "!</h1>"
+    return render_template("hello.html", user=username)
