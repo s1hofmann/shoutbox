@@ -25,7 +25,8 @@ def say_hi(username):
 
 @app.route("/user/<string:username>")
 def user(username):
-    pass
+    shouts = models.Shout.query.filter_by(username=username).all()
+    return render_template("index.html", elements = shouts)
 
 @app.route("/shout/", methods=["GET", "POST"])
 def shout():
