@@ -49,12 +49,6 @@
 			</ul>
 		</ul>
 	</section>
-	<section class="slide">
-		<h2>Outline</h2>
-		<ul>
-			<li>3. Uberspace</li>
-		</ul>
-	</section>
 
 	<section class="slide white">
 		<h2 class="shout">-1. Who am I and what am I doing here?</h2>
@@ -269,7 +263,7 @@ print("Hello world!")</code>
 		</pre>
 		<pre>
 			<code># main.py</code>
-			<code>import .consol</code>
+			<code>import consol</code>
 			<code>consol.say_hi()</code>
 		</pre>
 	</section>
@@ -371,7 +365,7 @@ print("Hello world!")</code>
 	<section class="slide">
 		<h2>Flask - Hello world</h2>
 		<ul>
-			<li>Create a file <i>note_app.py</i> inside the <i>notes</i> folder</li>
+			<li>Edit the file <i>note_app.py</i> inside the <i>notes</i> folder</li>
 		</ul>
 		<pre>
 			<code># notes/note_app.py
@@ -811,13 +805,15 @@ db = SQLAlchemy(app)</code>
 		<ul>
 			<li>Keeping configuration elements inside the code is not that great</li>
 			<li>Flask provides a way to configure the application object using a config class</li>
-			<li>Config is a simple data class with members named after the config entries</li>
 		</ul>
 		<pre>
 			<code>class Config:
     SECRET_KEY = 'hard to guess'
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = 'sqlite:///shoutbox.db'</code>
+		</pre>
+		<pre>
+			<code>app.config.from_object($config_object)</code>
 		</pre>
 	</section>
 
