@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ConSol* DevOps Day 2017</title>
+	<title style="text-decoration: line-through">ConSol DevOps Day 2017</title>
+	<title>Code Design Camp Munich 2018</title>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -247,9 +248,9 @@ print("Hello world!")</code>
 		<ul>
 			<li>Every single source file in Python represents a module</li>
 			<li>It's possible to keep all your code in a single module</li>
-			<li>It's better to separate it into modules</li>
+			<li>It's better to separate it into multiple modules</li>
 			<li>Modules can be imported</li>
-			<li>Once a module gets imported, all of it's statements are executed until EOF</li>
+			<li>Once a module gets imported, all of its statements are executed until EOF</li>
 			<li>What's left on global scope after this initial execution is the modules content</li>
 		</ul>
 	</section>
@@ -313,8 +314,8 @@ print("Hello world!")</code>
 		<h2>Flask - Project structure</h2>
 		<pre>
 			<code>- flask/  <- Project folder</code>
-			<code>|- notes/  <- Application subfolder</code>
-			<code> |- __init__.py  <- notes package</code>
+			<code>|- shoutbox/  <- Application subfolder</code>
+			<code> |- __init__.py  <- shoutbox package</code>
 			<code>|- venv/  <- Virtual environment</code>
 			<code>|- run.py  <- Script to run application</code>
 		</pre>
@@ -358,7 +359,7 @@ git checkout tags/flask_init</code>
 		<ul>
 			<li>The basic project structure is now set up</li>
 			<li>The <i>run.py</i> script is used to run the server (later used for FastCGI)</li>
-			<li>Everything related to the actual web application goes inside <i>notes/</i></li>
+			<li>Everything related to the actual web application goes inside <i>shoutbox/</i></li>
 			<li>Packages and interpreter are located in <i>venv/</i></li>
 		</ul>
 	</section>
@@ -366,41 +367,41 @@ git checkout tags/flask_init</code>
 	<section class="slide">
 		<h2>Flask - Hello world</h2>
 		<ul>
-			<li>Edit the file <i>note_app.py</i> inside the <i>notes</i> folder</li>
+			<li>Edit the file <i>shoutbox_app.py</i> inside the <i>shoutbox</i> folder</li>
 		</ul>
 		<pre>
-			<code># notes/note_app.py
+			<code># shoutbox/shoutbox_app.py
 from flask import Flask
 __all__ = ['app'] # Added for imports
 app = Flask(__name__)
 @app.route('/')
 def index():
-	return "Hello ConSolis!"</code>
+	return "Hello world!"</code>
 		</pre>
 	</section>
 
 	<section class="slide">
 		<h2>Flask - Hello world</h2>
 		<ul>
-			<li>Next, import all symbols from <i>notes.py</i> to the package</li>
+			<li>Next, import all symbols from <i>shoutbox.py</i> to the package</li>
 		</ul>
 		<pre>
-			<code># notes/__init__.py
-from .notes_app import *</code>
+			<code># shoutbox/__init__.py
+from .shoutbox_app import *</code>
 		</pre>
 	</section>
 
 	<section class="slide">
 		<h2>Flask - Hello world</h2>
 		<ul>
-			<li>Finally, make the notes application available in <i>run.py</i></li>
+			<li>Finally, make the shoutbox application available in <i>run.py</i></li>
 		</ul>
 		<pre>
 			<code># run.py
 #!venv/bin/python
-import notes
+import shoutbox
 if __name__ == "__main__":
-	notes.app.run()</code>
+	shoutbox.app.run()</code>
 		</pre>
 	</section>
 
@@ -429,7 +430,7 @@ if __name__ == "__main__":
 		<pre>
 			<code>@app.route('/')  # Route decorator
 def index():  # View function
-	return "Hello ConSolis!"</code>
+	return "Hello world!"</code>
 		</pre>
 	</section>
 
@@ -495,7 +496,7 @@ def say_hi(username):  # View function
 		<pre>
 			<code>@app.index('/')</code>
 			<code>def index():</code>
-			<code>	return ("Hello ConSolis!", 204)
+			<code>	return ("Hello world!", 204)
 		</pre>
 	</section>
 
@@ -630,7 +631,7 @@ def say_hi(username):
 		</ul>
 		<pre>
 			<code>pip install flask-wtf</code>
-		</<pre>
+		</pre>
 	</section>
 
 	<section class="slide">
@@ -659,7 +660,7 @@ class MyForm(FlaskForm):
 	<section class="slide">
 		<h2>Flask - WebForms exercise</h2>
 		<ul>
-			<li>Create a new file <i>notes/forms.py</i></li>
+			<li>Create a new file <i>shoutbox/forms.py</i></li>
 			<li>Using the previous sample, build up a <i>ShoutForm</i></li>
 			<li>Provide a StringField for the name, a TextAreaField for the shout and a SubmitField to submit</li>
 		</ul>
@@ -673,7 +674,7 @@ class MyForm(FlaskForm):
 			<li>Flask provides a global secret key, which can be set in the app config map</li>
 		</ul>
 		<pre>
-			<code># notes/note_app.py
+			<code># shoutbox/shoutbox_app.py
 app.config['SECRET_KEY'] = "Don't tell anyone!"</code>
 		</pre>
 	</section>
@@ -742,7 +743,7 @@ app.config['SECRET_KEY'] = "Don't tell anyone!"</code>
 			<li>The SQLAlchemy engine is initialized by passing the application object to SQLAlchemy</li>
 		</ul>
 		<pre>
-			<code># notes/note_app.py
+			<code># shoutbox/shoutbox_app.py
 db = SQLAlchemy(app)</code>
 		</pre>
 		<ul>
@@ -767,8 +768,8 @@ db = SQLAlchemy(app)</code>
 	<section class="slide">
 		<h2>Flask - Defining persistence models</h2>
 		<ul>
-			<li>Create a new file "notes/models.py"</li>
-			<li>In this file, import the db object from note_app</li>
+			<li>Create a new file "shoutbox/models.py"</li>
+			<li>In this file, import the db object from shoutbox_app</li>
 			<li>Using the db object, create your Shout database model</li>
 	</section>
 
@@ -776,7 +777,7 @@ db = SQLAlchemy(app)</code>
 		<h2>Flask - Cyclic imports</h2>
 		<ul>
 			<li>We need to make the newly defined model available in our controller</li>
-			<li>We'll have to import the models module in note_app</li>
+			<li>We'll have to import the models module in shoutbox_app</li>
 			<li>For this to work, the module has to be imported <b>after</b> the db object has been initialized</li>
 	</section>
 
