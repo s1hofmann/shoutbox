@@ -1,4 +1,4 @@
-from .note_app import db
+from .shoutbox_app import db
 
 
 class Shout(db.Model):
